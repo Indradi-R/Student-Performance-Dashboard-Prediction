@@ -6,6 +6,8 @@ from joblib import load
 
 st.set_page_config(layout="wide")
 
+data = pd.read_csv("newEduDataset.csv", delimiter=",")
+
 category_mapping = {
     33: 'Biofuel Production Technologies',
     171: 'Animation and Multimedia Design',
