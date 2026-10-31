@@ -1,44 +1,51 @@
-# Student-Performance-Dashboard-Prediction
+# Analisis dan Prediksi Performa Mahasiswa
 
-## Business Understanding
-Jaya Jaya Institute adalah salah satu institusi pendidikan perguruan yang telah berdiri sejak tahun 2000. Jaya Jaya Institute dikenal sebagai institusi yang menerima siswa dari berbagai macam kalangan. Institusi pendidikan ini memiliki kelas pagi dan malam dan menyediakan lebih dari 10 pilihan jurusan. 
+Proyek ini mengeksplorasi faktor yang berkaitan dengan status studi mahasiswa. Repository berisi notebook analisis, sebuah aplikasi prediksi berbasis Streamlit, model tersimpan, data pendukung, dan gambar dashboard.
 
-### Permasalahan Bisnis
-Permasalahan bisnis yang dihadapi oleh Jaya Jaya Institute adalah tingginya dropout rate, yang berarti siswa tidak menyelesaikan pendidikannya. Hal ini disebabkan banyaknya jurusan yang harus diawasi dan faktor-faktor lainnya. Hal tersebut mendorong pihak institusi pendidikan untuk mencari tahu penyebab tingginya dropout rate sehingga dapat meminimalisasi kemungkinan terjadinya dropout.
+## Alur proyek
 
-### Cakupan Proyek
-1. Menganalisis faktor penyebab tingginya dropout rate
-2. Membuat model machine learning dan prediksi sederhana
-3. Membangun dashboard menggunakan metabase
-
-### Persiapan
-
-Sumber data: https://github.com/dicodingacademy/dicoding_dataset/tree/main/students_performance
-
-Menginstal package yang dibutuhkan
+```mermaid
+flowchart TD
+    A[Dataset performa mahasiswa] --> B[Notebook: pembersihan dan analisis]
+    B --> C[Pelatihan Random Forest]
+    C --> D[model.joblib]
+    E[newEduDataset.csv] --> F[Aplikasi Streamlit]
+    D --> F
+    F --> G[Form input dan hasil prediksi]
 ```
+
+## Pratinjau
+
+![Dashboard analisis performa mahasiswa](indradi-dashboard.png)
+
+![Contoh antarmuka prediksi](Screenshot%202025-01-30%20210248.png)
+
+## Menjalankan aplikasi prediksi
+
+Pastikan `app.py`, `model.joblib`, dan `newEduDataset.csv` berada di direktori proyek yang sama.
+
+```bash
+python -m venv .venv
+```
+
+Aktifkan virtual environment, lalu jalankan:
+
+```bash
 pip install -r requirements.txt
+streamlit run app.py
 ```
 
-## Business Dashboard
+Aplikasi meminta beberapa atribut mahasiswa melalui form dan menggunakan `model.joblib` untuk menghasilkan prediksi. Notebook analisis bernama `noteboook.ipynb` (ejaan nama file mengikuti repository).
 
-<img src="indradi-dashboard.png" alt="alt text" width="whatever" height="whatever">
+## Isi utama
 
+- `app.py`: antarmuka input dan prediksi Streamlit.
+- `noteboook.ipynb`: analisis data dan eksperimen Random Forest.
+- `model.joblib`: model yang dimuat oleh aplikasi.
+- `newEduDataset.csv`: data untuk pilihan kategori di antarmuka.
+- `requirements.txt`: dependency Python.
+- `indradi-dashboard.png`: visual dashboard analisis.
 
+## Catatan
 
-## Machine Learning Prediction System
-Screenshot 2025-01-30 210248.png
-<img src="Screenshot 2025-01-30 210248.png" alt="alt text" width="whatever" height="whatever">
-Streamlit link: https://student-performance-dashboard-prediction-vgttrpmhynqmy9sl8nxut.streamlit.app/
-
-## Conclusion
-Dari analisis yang dilakukan, dapat disimpulkan bahwa beberapa faktor seperti pembayaran uang kuliah, jumlah unit kurikuler yang disetujui, prestasi akademik, dan status penerima beasiswa sangat mempengaruhi status mahasiswa, terutama dalam hal kemungkinan putus kuliah. Adapun beberapa kesimpulan seperti:
-- Sebagian besar dari penerima beasiswa tidak melakukan dropout.
-- Sebagian besar siswa berjenis kelamin perempuan.
-- Jurusan management memiliki jumlah siswa dropout yang lebih banyak.
-
-### Rekomendasi Action Items
-Berikan beberapa rekomendasi action items yang harus dilakukan Jaya Jaya Institute guna menyelesaikan masalah tingginya dropout rate diantaranya sebagai berikut.
-- Kaji kurikulum: Tinjau apakah beban studi atau tingkat kesulitan terlalu tinggi untuk siswa.
-- Bimbingan akademik: Adakan sesi konsultasi atau tutor tambahan untuk mata pelajaran yang sering menjadi kendala.
-- Survei kepuasan siswa: Lakukan survei untuk memahami tantangan siswa di jurusan ini.
+Hasil prediksi hanya demonstrasi model pada dataset proyek; hasilnya bukan keputusan akademik. Jika model gagal dimuat, periksa kesesuaian versi scikit-learn yang digunakan saat model disimpan.
